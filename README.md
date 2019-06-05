@@ -1,2 +1,2 @@
-# tableau-workbook-api
+# tableau-workbook-xml
 Python manipulation of Tableau workbooks via the XML

@@ -15,8 +15,10 @@ setup(name='tableauxml',
       test_suite='nose.collector',
       tests_require=['nose'],
       keywords='tableau xml workbook',
+      include_package_data=True,
       packages=['tableauxml'],
       install_requires=[
-      'lxml'
-    ]
+      'lxml',
+    ],
+    zip_safe=False
 )

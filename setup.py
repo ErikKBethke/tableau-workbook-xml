@@ -19,6 +19,7 @@ setup(name='tableauxml',
       packages=['tableauxml'],
       install_requires=[
       'lxml',
+      'io',
     ],
     zip_safe=False
 )

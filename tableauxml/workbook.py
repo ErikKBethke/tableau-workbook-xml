@@ -1,5 +1,4 @@
 import lxml.etree as etree
-from io import StringIO, BytesIO
 
 # %%
 class Workbook:
@@ -11,12 +10,18 @@ class Workbook:
         self.filepath = filepath
         self.encoding = encoding
         self.xml = None
+        self.datasources = None
 
     def load_xml(self):
         """
         Takes the workbook filepath and creates an ElementTree object for xml.
         """
         self.xml = etree.parse(self.filepath)
+
+    def load_datasources(self):
+        """
+        """
+        self.datasources = self.xml.xpath('/workbook/datasources/datasource')
 
     def get_docinfo(self):
         """

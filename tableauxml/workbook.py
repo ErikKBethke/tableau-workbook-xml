@@ -1,9 +1,8 @@
 import lxml.etree as etree
 
-# %%
 class Workbook:
     """
-    Creates a Tableau Workbook object.
+    A class for the Tableau Workbook, which can be read due to its xml formatting.
     """
 
     def __init__(self, filepath, encoding='utf-8'):
@@ -20,6 +19,8 @@ class Workbook:
 
     def load_datasources(self):
         """
+        Creates datasource element list
+        Note: see _prepare_datasources
         """
         self.datasources = self.xml.xpath('/workbook/datasources/datasource')
 
@@ -38,4 +39,11 @@ class Workbook:
                 'standalone' : self.xml.docinfo.standalone,
                 'system_url' : self.xml.docinfo.system_url,
                 'xml_version' : self.xml.docinfo.xml_version,
+                }
+
+    def get_datasources(self):
+        """
+        """
+        return {
+
                 }

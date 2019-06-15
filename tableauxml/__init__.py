@@ -1,5 +1,3 @@
-from tableauxml import workbook
-
 from .workbook import Workbook
 from .datasource import Datasource
 

@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='tableauxml',
-      version='0.1',
+      version='0.2',
       description='Python manipulation of Tableau workbooks via the XML',
       long_description=readme(),
       url='https://github.com/ErikKBethke/tableau-workbook-xml',

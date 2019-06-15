@@ -1,49 +1,60 @@
 import lxml.etree as etree
 
+from tableauxml import Datasource
+# %%
 class Workbook:
     """
     A class for the Tableau Workbook, which can be read due to its xml formatting.
     """
 
     def __init__(self, filepath, encoding='utf-8'):
-        self.filepath = filepath
+        self._filepath = filepath
         self.encoding = encoding
-        self.xml = None
-        self.datasources = None
+        self._xml = self._load_xml(self._filepath)
+        self._datasources = self._load_datasources(self._xml)
 
-    def load_xml(self):
-        """
-        Takes the workbook filepath and creates an ElementTree object for xml.
-        """
-        self.xml = etree.parse(self.filepath)
+    @property
+    def filepath(self):
+        return self._filepath
 
-    def load_datasources(self):
-        """
-        Creates datasource element list
-        Note: see _prepare_datasources
-        """
-        self.datasources = self.xml.xpath('/workbook/datasources/datasource')
+    @property
+    def datasources(self):
+        return self._datasources
 
     def get_docinfo(self):
         """
-        Returns all doc info values for the XML object.
+        Returns all doc info values for the XML workbook object.
         """
         return {
-                'URL' : self.xml.docinfo.URL,
-                'doctype' : self.xml.docinfo.doctype,
-                'encoding' : self.xml.docinfo.encoding,
-                'externalDTD' : self.xml.docinfo.externalDTD,
-                'internalDTD' : self.xml.docinfo.externalDTD,
-                'public_id' : self.xml.docinfo.public_id,
-                'root_name' : self.xml.docinfo.root_name,
-                'standalone' : self.xml.docinfo.standalone,
-                'system_url' : self.xml.docinfo.system_url,
-                'xml_version' : self.xml.docinfo.xml_version,
+                'URL' : self._xml.docinfo.URL,
+                'doctype' : self._xml.docinfo.doctype,
+                'encoding' : self._xml.docinfo.encoding,
+                'externalDTD' : self._xml.docinfo.externalDTD,
+                'internalDTD' : self._xml.docinfo.externalDTD,
+                'public_id' : self._xml.docinfo.public_id,
+                'root_name' : self._xml.docinfo.root_name,
+                'standalone' : self._xml.docinfo.standalone,
+                'system_url' : self._xml.docinfo.system_url,
+                'xml_version' : self._xml.docinfo.xml_version,
                 }
 
-    def get_datasources(self):
+    @staticmethod
+    def _load_xml(filepath):
         """
+        Generates workbook xml tree on instantiating a workbook
+        To-Do: enable archived for tbwx
         """
-        return {
+        return etree.parse(filepath)
 
-                }
+    @staticmethod
+    def _load_datasources(xml):
+        """
+        Generates datasources elements and parses through them on instantiating a workbook
+        """
+        # for workbooks with more than one datasource, iterate
+        sources = []
+        for source in xml.xpath('/workbook/datasources/datasource'):
+            ds = Datasource(source)
+            sources.append(ds)
+            pass
+        return  sources

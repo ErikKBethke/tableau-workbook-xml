@@ -9,8 +9,18 @@ A large thank you to Tableau themselves for publishing their [document api](http
 
 ## Installation
 Currently, the easiest way to install is from its ([source](https://github.com/ErikKBethke/tableau-workbook-xml)) on Github:
+
 `pip install git+https://github.com/ErikKBethke/tableau-workbook-xml`
 
 ### Requirements
 This package has dependencies on the following (included in setup.py):
 * lmxl
+
+To get started:
+```python
+from tableauxml import Workbook
+
+wb = Workbook('Workbook.twb')
+```
+From there, reference the [Wiki]() for better understanding of what attributes and functions can be used.
+_Note: the Wiki has not yet been developed_

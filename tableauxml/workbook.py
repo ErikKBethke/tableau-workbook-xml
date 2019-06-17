@@ -5,9 +5,15 @@ from tableauxml import Datasource
 class Workbook:
     """
     A class for the Tableau Workbook, which can be read due to its xml formatting.
+
+    Sub classes:
+        datasource
     """
 
     def __init__(self, filepath, encoding='utf-8'):
+        """
+        Constructor. Builds workbook from filepath. Will build datasources, XXXXXXXX (list additional construction) automatically.
+        """
         self._filepath = filepath
         self.encoding = encoding
         self._xml = self._load_xml(self._filepath)
@@ -15,10 +21,16 @@ class Workbook:
 
     @property
     def filepath(self):
+        """
+        Returns the filepath.
+        """
         return self._filepath
 
     @property
     def datasources(self):
+        """
+        Datasources, as a list. Can use indices to select data sources in question.
+        """
         return self._datasources
 
     def get_docinfo(self):

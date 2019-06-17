@@ -15,6 +15,10 @@ class Datasource:
     """
 
     def __init__(self, data_xml):
+        """
+        Constructor. Passes datasource_xml.
+        """
+        # assign _datasource_xml when _load_datasources is called
         self._datasource_xml = data_xml
         # initialize attributes available in datasource
         self._caption = self._datasource_xml.get('caption', '')
@@ -38,30 +42,44 @@ class Datasource:
 
     @property
     def caption(self):
+        """
+        Caption of datasource. Not to be confused with nammed-connection caption.
+        """
         return self._caption
 
-    # allows manipulation of caption in datasource xml
     @caption.setter
     def caption(self, value):
+        """
+        Setter for caption. Can redefine what the workbook's datasource connection is captioned as.
+        """
         self._datasource_xml.set('caption', value)
         self._caption = value
 
     @caption.deleter
     def caption(self):
+        """
+        Deleter for caption. Entirely removes.
+        """
         del self._datasource_xml.attrib['caption']
         self._caption = None
 
     @property
     def inline(self):
+        """
+        Returns information about whether the datasource is inline.
+        """
         return self._inline
 
     @property
     def name(self):
+        """
+        Returns information about the name of the datasource.
+        """
         return self._name
 
 ''' Enable once connection class developed
     @staticmethod
-    def _load_connections(xml):
+    def _load_connection(xml):
         """
         Generates connection elements and parses through them on instantiating a datasource
         """

@@ -7,6 +7,8 @@ As there are existing ways to read Tableau workbooks via the API, this package i
 
 A large thank you to Tableau themselves for publishing their [document api](http://tableau.github.io/document-api-python/docs/), which gave some inspiration on how to structure this package.
 
+_Note: While this package is public, it is in its initial development. Please do not expect full functionality, as it is a continual work in progress. Updates will be committed as soon as they are in relatively functional states. Again, this package is in INITIAL STAGES.
+
 ## Installation
 Currently, the easiest way to install is from its ([source](https://github.com/ErikKBethke/tableau-workbook-xml)) on Github:
 

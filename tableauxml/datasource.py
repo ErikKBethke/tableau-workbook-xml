@@ -26,7 +26,8 @@ class Datasource:
         self._version = self._datasource_xml.get('source', '')
         # initialize child elements within datasource
         # build out - do I want to modify all?
-        self._connection = None
+        # enable connection once class and method developed fully
+        #self._connection = self._load_connnections(self._datasource_xml)
         self._aliases_enabled = self._datasource_xml.find('aliases').attrib
         # note: check how column vs. column-instance compare
         self._columns = None
@@ -60,3 +61,22 @@ class Datasource:
     @property
     def name(self):
         return self._name
+
+''' Enable once connection class developed
+    @staticmethod
+    def _load_connections(xml):
+        """
+        Generates connection elements and parses through them on instantiating a datasource
+        """
+        wb.datasources[0]._datasource_xml.xpath('./connection/*')
+        xml.xpath('./connection/')
+        # for workbooks with more than one datasource, iterate
+        sources = []
+        for source in xml.xpath('/workbook/datasources/datasource'):
+            ds = Datasource(source)
+            sources.append(ds)
+            pass
+        return  sources
+'''
+# %%
+from tableauxml import Workbook

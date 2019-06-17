@@ -16,6 +16,9 @@ Currently, the easiest way to install is from its ([source](https://github.com/E
 This package has dependencies on the following (included in setup.py):
 * lmxl
 
+### Limitations
+Currently, this package is only designed to work with Tableau unpackaged workbooks that have excel-direct connections. You may attempt to access workbooks in other formats, but success may be limited. Development is in progress to build out additional access capabilities.
+
 To get started:
 ```python
 from tableauxml import Workbook

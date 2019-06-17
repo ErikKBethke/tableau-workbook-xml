@@ -4,7 +4,6 @@ import lxml.etree as etree
 class Datasource:
     """
     A class for the Tableau Datasources, identified within the xml.
-    Property modification capabilities based on tableu document api.
 
     Attributes with modifier capabilities (set, delete):
         caption (set, delete)
@@ -16,9 +15,7 @@ class Datasource:
     """
 
     def __init__(self, data_xml):
-        # datasource ElementTree pulled from full workbook xml, temporarily choosing 1st
-        # eventually, workbook will iterate through [0:XXX] of datasources
-        self._datasource_xml = data_xml.xpath('/workbook/datasources/datasource')[0]
+        self._datasource_xml = data_xml
         # initialize attributes available in datasource
         self._caption = self._datasource_xml.get('caption', '')
         self._inline = self._datasource_xml.get('inline', '')
